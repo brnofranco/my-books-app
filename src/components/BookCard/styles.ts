@@ -1,25 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-	container: {
+	card: {
 		flex: 1,
+		minWidth: 100,
 		alignItems: 'center',
 		justifyContent: 'center',
-	},
-	booksContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		gap: 12,
+		backgroundColor: 'aliceblue',
+		borderWidth: 2,
 		padding: 12,
+		elevation: 5,
+	},
+	image: {
+		width: 48,
+		height: 72,
 	},
 	title: {
 		fontWeight: 'bold',
-		fontSize: 36,
-		marginBottom: 24,
+		fontSize: 16,
 	},
-	book: {
-		fontSize: 24,
+	author: {
+		fontSize: 12,
 	},
 });
 

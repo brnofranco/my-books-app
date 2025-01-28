@@ -6,20 +6,10 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	booksContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		gap: 12,
-		padding: 12,
-	},
 	title: {
 		fontWeight: 'bold',
 		fontSize: 36,
 		marginBottom: 24,
-	},
-	book: {
-		fontSize: 24,
 	},
 });
 
