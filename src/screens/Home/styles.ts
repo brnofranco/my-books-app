@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		paddingTop: 40,
 	},
 	booksContainer: {
 		display: 'flex',
@@ -21,5 +22,6 @@ export const styles = StyleSheet.create({
 	book: {
 		fontSize: 24,
 	},
+	scrollViewContent: { padding: 20 },
 });
 

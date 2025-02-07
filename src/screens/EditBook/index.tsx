@@ -1,17 +1,14 @@
 import { Text, View } from 'react-native';
 import { styles } from './styles';
-import { RouteProp } from '@react-navigation/native';
 
-type RootStackParamList = { EditBook: { title: string } };
+export function EditBookScreen({ route }) {
+	const { book } = route.params;
 
-type EditBookScreenRouteProp = RouteProp<RootStackParamList, 'EditBook'>;
-
-export function EditBookScreen({ route }: { route: EditBookScreenRouteProp }) {
-	const { title } = route.params;
+	// TODO: https://www.youtube.com/watch?v=BJEACwKXWf8 - 32min
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Book {title}</Text>
+			<Text style={styles.title}>Book {book.title}</Text>
 		</View>
 	);
 }
