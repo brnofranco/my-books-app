@@ -7,6 +7,7 @@ import { initializeDatabase } from './src/database/initializeDatabase';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 function HomeStack() {
 	return (
@@ -44,37 +45,38 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	return (
 		<SQLiteProvider databaseName="myBooks.db" onInit={initializeDatabase}>
-			<NavigationContainer>
-				<Tab.Navigator
-					initialRouteName={pages.home.name}
-					screenOptions={({ route }) => ({
-						tabBarIcon: ({ color, size }) => {
-							const icons: Record<string, string> = {
-								home: 'book',
-								registerBook: 'create',
-							};
+			<GestureHandlerRootView>
+				<NavigationContainer>
+					<Tab.Navigator
+						initialRouteName={pages.home.name}
+						screenOptions={({ route }) => ({
+							tabBarIcon: ({ color, size }) => {
+								const icons: Record<string, string> = {
+									home: 'book',
+									registerBook: 'create',
+								};
 
-							return <Ionicons name={icons[route.name]} size={size} color={color} />;
-						},
-						tabBarActiveTintColor: '#03530d',
-						tabBarInactiveTintColor: 'gray',
-						tabBarStyle: { backgroundColor: '#f5f5f5', elevation: 5 },
-						headerShown: false,
-					})}
-				>
-					{Object.values(pages).map(
-						(page) =>
-							!page.hidden && (
-								<Tab.Screen
-									key={page.name}
-									name={page.name}
-									options={page.options}
-									component={page.component}
-								/>
-							)
-					)}
-				</Tab.Navigator>
-			</NavigationContainer>
+								return <Ionicons name={icons[route.name]} size={size} color={color} />;
+							},
+							tabBarActiveTintColor: '#03530d',
+							tabBarStyle: { backgroundColor: '#fff', elevation: 5, borderTopWidth: 0 },
+							headerShown: false,
+						})}
+					>
+						{Object.values(pages).map(
+							(page) =>
+								!page.hidden && (
+									<Tab.Screen
+										key={page.name}
+										name={page.name}
+										options={page.options}
+										component={page.component}
+									/>
+								)
+						)}
+					</Tab.Navigator>
+				</NavigationContainer>
+			</GestureHandlerRootView>
 		</SQLiteProvider>
 	);
 }

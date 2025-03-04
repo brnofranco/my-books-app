@@ -1,16 +1,18 @@
-import { Alert, Button, Text, TextInput, View } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
+import { Alert, Button, Text, View } from 'react-native';
+import { useForm } from 'react-hook-form';
 import { Book } from '../../models/Book';
 import { styles } from './styles';
 import Input from '../../components/Input';
 import { useBookDatabase } from '../../database/useBookDatabase';
 import { useNavigation } from '@react-navigation/native';
 import { pages } from '../../../App';
+import { Header } from '../../components/Header';
 
 export function RegisterBookScreen() {
 	const {
 		control,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm({ defaultValues: { title: '', author: '', image: '' } as Book });
 
@@ -20,8 +22,9 @@ export function RegisterBookScreen() {
 
 	const onSubmit = async (data: Partial<Book>) => {
 		try {
-			const result = await bookDatabase.create(data);
-			navigation.navigate(pages.home.name, { bookCreatedSuccessTitle: result.title });
+			await bookDatabase.create(data);
+			navigation.navigate(pages.home.name);
+			reset();
 		} catch (error) {
 			console.error(error);
 			Alert.alert('Erro ao cadastrar o produto.');
@@ -30,7 +33,7 @@ export function RegisterBookScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Register Book</Text>
+			<Header title="Register Book" />
 
 			<View style={styles.form}>
 				<Input control={control} errors={errors} name="title" placeHolder="Title" />

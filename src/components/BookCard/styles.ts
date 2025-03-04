@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	card: {
-		width: 150,
+		width: '46%',
 		height: 200,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'aliceblue',
-		borderWidth: 2,
+		backgroundColor: '#fff',
 		padding: 12,
 		elevation: 5,
+		borderRadius: 8,
 	},
 	image: {
 		width: 48,
@@ -21,6 +21,9 @@ export const styles = StyleSheet.create({
 	},
 	author: {
 		fontSize: 12,
+	},
+	button: {
+		height: 12,
 	},
 });
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Button } from 'react-native';
 import { Book } from '../../models/Book';
 import { styles } from './styles';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from '@react-navigation/elements';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { pages } from '../../../App';
 
 export function BookCard({ book }: { book: Partial<Book> }) {
@@ -18,7 +17,7 @@ export function BookCard({ book }: { book: Partial<Book> }) {
 			<Text style={styles.title}>{book.title}</Text>
 			<Text style={styles.author}>{book.author}</Text>
 
-			<Button onPress={() => navigation.navigate(pages.edit.name, { book })}>Edit</Button>
+			<Button title="Edit" onPress={() => navigation.navigate(pages.edit.name, { book })} />
 		</View>
 	);
 }

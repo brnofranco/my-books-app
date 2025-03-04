@@ -1,9 +1,11 @@
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { styles } from './styles';
 import { BookCard } from '../../components/BookCard';
 import { useBookDatabase } from '../../database/useBookDatabase';
 import { useEffect, useState } from 'react';
 import { Book } from '../../models/Book';
+import { FlatList } from 'react-native-gesture-handler';
+import { Header } from '../../components/Header';
 
 const books = [
 	{
@@ -17,17 +19,11 @@ const books = [
 	},
 ];
 
-export function HomeScreen({ route }) {
-	const params = route.params;
-
+export function HomeScreen() {
 	const [books, setBooks] = useState<Book[]>([]);
 	const bookDatabase = useBookDatabase();
 
 	useEffect(() => {
-		if (params?.bookCreatedSuccessTitle) {
-			Alert.alert(`Livro ${params?.bookCreatedSuccessTitle} cadastrado com sucesso.`);
-		}
-
 		bookDatabase
 			.getAll()
 			.then((books) => setBooks(books))
@@ -36,15 +32,19 @@ export function HomeScreen({ route }) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>My Books</Text>
+			<Header title="My Books" />
 
-			<ScrollView contentContainerStyle={styles.scrollViewContent}>
-				<View style={styles.booksContainer}>
-					{books?.map((book) => (
-						<BookCard key={book.id} book={book} />
-					))}
-				</View>
-			</ScrollView>
+			<View style={styles.scrollViewContent}>
+				<FlatList
+					data={books}
+					renderItem={({ item: book }) => <BookCard key={book.id} book={book} />}
+					keyExtractor={(book) => `${book.id}`}
+					numColumns={2}
+					style={{ gap: 12 }}
+					contentContainerStyle={{ gap: 20 }}
+					columnWrapperStyle={{ gap: 20 }}
+				/>
+			</View>
 		</View>
 	);
 }

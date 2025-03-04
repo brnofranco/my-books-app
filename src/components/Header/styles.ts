@@ -2,21 +2,16 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		gap: 64,
-	},
-	form: {
-		width: '100%',
-		gap: 36,
-		padding: 24,
-	},
-	title: {
-		fontWeight: 'bold',
-		fontSize: 36,
-		marginBottom: 24,
+		backgroundColor: '#03530d',
+		padding: 20,
+		justifyContent: 'center',
+		alignItems: 'center',
+		elevation: 5,
 	},
 	text: {
-		backgroundColor: 'gray',
+		color: '#fff',
+		fontWeight: 'bold',
+		fontSize: 36,
 	},
 });
 
