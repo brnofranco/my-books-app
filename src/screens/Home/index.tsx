@@ -39,10 +39,7 @@ export function HomeScreen() {
 					data={books}
 					renderItem={({ item: book }) => <BookCard key={book.id} book={book} />}
 					keyExtractor={(book) => `${book.id}`}
-					numColumns={2}
-					style={{ gap: 12 }}
 					contentContainerStyle={{ gap: 20 }}
-					columnWrapperStyle={{ gap: 20 }}
 				/>
 			</View>
 		</View>
