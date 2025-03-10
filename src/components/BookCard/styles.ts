@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	card: {
-		width: '100%',
 		backgroundColor: '#fff',
-		elevation: 5,
+		elevation: 2,
 		borderRadius: 8,
 		flexDirection: 'row',
 		gap: 16,
+		marginHorizontal: 20,
 	},
 	image: {
 		aspectRatio: 0.67,

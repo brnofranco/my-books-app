@@ -21,7 +21,10 @@ export const styles = StyleSheet.create({
 	},
 	scrollViewContent: {
 		flex: 1,
-		padding: 20,
+	},
+	flatListContainer: {
+		gap: 20,
+		marginVertical: 20,
 	},
 });
 
