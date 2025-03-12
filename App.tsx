@@ -2,17 +2,16 @@ import { NavigationContainer, ParamListBase } from '@react-navigation/native';
 import { HomeScreen } from './src/screens/Home';
 import { RegisterBookScreen } from './src/screens/RegisterBook';
 import { EditBookScreen } from './src/screens/EditBook';
-import { SQLiteProvider } from 'expo-sqlite';
-import { initializeDatabase } from './src/database/initializeDatabase';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BooksProvider } from './src/contexts/BooksContext';
 
 function HomeStack() {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="home" component={HomeScreen} options={{ title: 'Books', headerShown: false }} />
+			<Stack.Screen name="books" component={HomeScreen} options={{ title: 'Books', headerShown: false }} />
 			<Stack.Screen name="edit" component={EditBookScreen} options={{ title: 'Edit' }} />
 		</Stack.Navigator>
 	);
@@ -44,8 +43,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 	return (
-		<SQLiteProvider databaseName="myBooks.db" onInit={initializeDatabase}>
-			<GestureHandlerRootView>
+		<GestureHandlerRootView>
+			<BooksProvider>
 				<NavigationContainer>
 					<Tab.Navigator
 						initialRouteName={pages.home.name}
@@ -76,8 +75,8 @@ export default function App() {
 						)}
 					</Tab.Navigator>
 				</NavigationContainer>
-			</GestureHandlerRootView>
-		</SQLiteProvider>
+			</BooksProvider>
+		</GestureHandlerRootView>
 	);
 }
 

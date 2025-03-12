@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, Button, TouchableHighlight } from 'react-native';
-import { Book } from '../../models/Book';
+import Book from '../../models/Book';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';

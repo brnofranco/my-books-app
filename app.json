@@ -26,7 +26,23 @@
 		"web": {
 			"favicon": "./assets/favicon.png"
 		},
-		"plugins": ["expo-sqlite"]
+		"plugins": [
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"extraPods": [
+							{
+								"name": "simdjson",
+								"configurations": ["Debug", "Release"],
+								"path": "../node_modules/@nozbe/simdjson",
+								"modular_headers": true
+							}
+						]
+					}
+				}
+			]
+		]
 	}
 }
 

@@ -1,11 +1,11 @@
-import { Alert, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { styles } from './styles';
 import { BookCard } from '../../components/BookCard';
-import { useBookDatabase } from '../../database/useBookDatabase';
-import { useEffect, useState } from 'react';
-import { Book } from '../../models/Book';
+import { useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { Header } from '../../components/Header';
+import { useBooksViewModel } from '../../hooks/useBooksViewModel';
+import { Loading } from '../../components/Loading';
 
 const books = [
 	{
@@ -20,15 +20,15 @@ const books = [
 ];
 
 export function HomeScreen() {
-	const [books, setBooks] = useState<Book[]>([]);
-	const bookDatabase = useBookDatabase();
+	const { isLoading, getBooks, books } = useBooksViewModel();
 
 	useEffect(() => {
-		bookDatabase
-			.getAll()
-			.then((books) => setBooks(books))
-			.catch(() => Alert.alert('Error to load books'));
-	});
+		getBooks();
+	}, []);
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<View style={styles.container}>

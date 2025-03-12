@@ -1,12 +1,12 @@
 import { Alert, Button, Text, View } from 'react-native';
 import { useForm } from 'react-hook-form';
-import { Book } from '../../models/Book';
+import Book from '../../models/Book';
 import { styles } from './styles';
 import Input from '../../components/Input';
-import { useBookDatabase } from '../../database/useBookDatabase';
 import { useNavigation } from '@react-navigation/native';
 import { pages } from '../../../App';
 import { Header } from '../../components/Header';
+import { useBooksViewModel } from '../../hooks/useBooksViewModel';
 
 export function RegisterBookScreen() {
 	const {
@@ -16,13 +16,13 @@ export function RegisterBookScreen() {
 		formState: { errors },
 	} = useForm({ defaultValues: { title: '', author: '', image: '' } as Book });
 
-	const bookDatabase = useBookDatabase();
+	const { createBook } = useBooksViewModel();
 
 	const navigation = useNavigation();
 
-	const onSubmit = async (data: Partial<Book>) => {
+	const onSubmit = async (data: Book) => {
 		try {
-			await bookDatabase.create(data);
+			await createBook(data);
 			navigation.navigate(pages.home.name);
 			reset();
 		} catch (error) {
