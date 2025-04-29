@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { styles } from './styles';
 import { BookCard } from '../../components/BookCard';
 import { useEffect } from 'react';
@@ -35,12 +35,18 @@ export function HomeScreen() {
 			<Header title="My Books" />
 
 			<View style={styles.scrollViewContent}>
-				<FlatList
-					data={books}
-					renderItem={({ item: book }) => <BookCard key={book.id} book={book} />}
-					keyExtractor={(book) => `${book.id}`}
-					contentContainerStyle={styles.flatListContainer}
-				/>
+				{books.length ? (
+					<FlatList
+						data={books}
+						renderItem={({ item: book }) => <BookCard key={book.id} book={book} />}
+						keyExtractor={(book) => `${book.id}`}
+						contentContainerStyle={styles.flatListContainer}
+					/>
+				) : (
+					<View style={styles.emptyContainer}>
+						<Text style={styles.emptyText}>No books registered!</Text>
+					</View>
+				)}
 			</View>
 		</View>
 	);

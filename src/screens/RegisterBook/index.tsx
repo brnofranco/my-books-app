@@ -4,9 +4,12 @@ import Book from '../../models/Book';
 import { styles } from './styles';
 import Input from '../../components/Input';
 import { useNavigation } from '@react-navigation/native';
-import { pages } from '../../../App';
 import { Header } from '../../components/Header';
 import { useBooksViewModel } from '../../hooks/useBooksViewModel';
+
+interface NavigationProps {
+	navigate: (screen: string) => void;
+}
 
 export function RegisterBookScreen() {
 	const {
@@ -18,12 +21,12 @@ export function RegisterBookScreen() {
 
 	const { createBook } = useBooksViewModel();
 
-	const navigation = useNavigation();
+	const navigation = useNavigation<NavigationProps>();
 
 	const onSubmit = async (data: Book) => {
 		try {
 			await createBook(data);
-			navigation.navigate(pages.home.name);
+			navigation.navigate('home');
 			reset();
 		} catch (error) {
 			console.error(error);

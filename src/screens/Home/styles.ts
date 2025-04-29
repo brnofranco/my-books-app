@@ -26,5 +26,14 @@ export const styles = StyleSheet.create({
 		gap: 20,
 		marginVertical: 20,
 	},
+	emptyContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	emptyText: {
+		fontSize: 18,
+		color: '#999',
+	},
 });
 
